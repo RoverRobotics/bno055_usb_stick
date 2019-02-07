@@ -75,7 +75,7 @@ private:
         commands_.push_back(*command);
       }
     } else if (mode_ == "imu") {
-      for (const boost::uint8_t **command = Constants::toIMUCommands(); *command; ++command) {
+      for (const boost::uint8_t **command = Constants::toIMUCommandsAdafruit(); *command; ++command) {
         commands_.push_back(*command);
       }
     } else {
