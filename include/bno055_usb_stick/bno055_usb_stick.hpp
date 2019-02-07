@@ -85,6 +85,7 @@ private:
         commands_.push_back(*command);
       }
     }
+
     for (const boost::uint8_t **command = Constants::startStreamCommands(); *command; ++command) {
       commands_.push_back(*command);
     }
@@ -114,6 +115,8 @@ private:
     // cancel the timeout action
     cancelWaitDeadline();
 
+    ROS_INFO("send bytes1: %i", bytes);
+
     if (error) {
       ROS_ERROR_STREAM("handleSendCommand: " << error.message());
       restart();
@@ -140,6 +143,8 @@ private:
   void handleWaitResponse(const boost::system::error_code &error, const std::size_t bytes) {
     // cancel the timeout action
     cancelWaitDeadline();
+
+    ROS_INFO("response bytes1: %i", bytes);
 
     if (error) {
       ROS_ERROR_STREAM("handleWaitResponse: " << error.message());
@@ -171,6 +176,8 @@ private:
   void handleWaitData(const boost::system::error_code &error, const std::size_t bytes) {
     // cancel the timeout action
     cancelWaitDeadline();
+
+    ROS_INFO("response bytes1: %i", bytes);
 
     if (error) {
       ROS_ERROR_STREAM("handleWaitData: " << error.message());
