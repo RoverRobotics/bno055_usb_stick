@@ -61,6 +61,7 @@ int main(int argc, char *argv[]) {
   tf_frame_id = ros::param::param< std::string >("~tf_frame_id", "fixed");
   tf_child_frame_id = ros::param::param< std::string >("~tf_child_frame_id", "bno055");
   invert_tf = ros::param::param("~invert_tf", false);
+  //frequency = ros::param::param("~frequency", 30);
 
   // setup publishers
   out_pub = nh.advertise< bno055_usb_stick_msgs::Output >("output", 1);

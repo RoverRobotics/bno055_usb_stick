@@ -85,6 +85,7 @@ private:
         commands_.push_back(*command);
       }
     }
+
     for (const boost::uint8_t **command = Constants::startStreamCommands(); *command; ++command) {
       commands_.push_back(*command);
     }
@@ -106,6 +107,11 @@ private:
                              boost::asio::buffer(command, Constants::getCommandLength(command)),
                              boost::bind(&BNO055USBStick::handleSendCommand, this, _1, _2));
 
+    //debugging lines
+    for (int i=0; i < Constants::getCommandLength(command); i++) {
+      ROS_INFO("On %i index, command is %02x", i, command[i]);
+    }
+
     // schedule restarting in case of timeout
     startWaitDeadline(&BNO055USBStick::restart);
   }
@@ -113,6 +119,8 @@ private:
   void handleSendCommand(const boost::system::error_code &error, const std::size_t bytes) {
     // cancel the timeout action
     cancelWaitDeadline();
+
+    ROS_INFO("send bytes1: %ld", bytes);
 
     if (error) {
       ROS_ERROR_STREAM("handleSendCommand: " << error.message());
@@ -140,6 +148,8 @@ private:
   void handleWaitResponse(const boost::system::error_code &error, const std::size_t bytes) {
     // cancel the timeout action
     cancelWaitDeadline();
+
+    ROS_INFO("response bytes1: %ld", bytes);
 
     if (error) {
       ROS_ERROR_STREAM("handleWaitResponse: " << error.message());
@@ -171,6 +181,8 @@ private:
   void handleWaitData(const boost::system::error_code &error, const std::size_t bytes) {
     // cancel the timeout action
     cancelWaitDeadline();
+
+    ROS_INFO("response bytes1: %ld", bytes);
 
     if (error) {
       ROS_ERROR_STREAM("handleWaitData: " << error.message());
