@@ -115,7 +115,7 @@ private:
     // cancel the timeout action
     cancelWaitDeadline();
 
-    ROS_INFO("send bytes1: %i", bytes);
+    ROS_INFO("send bytes1: %ld", bytes);
 
     if (error) {
       ROS_ERROR_STREAM("handleSendCommand: " << error.message());
@@ -144,7 +144,7 @@ private:
     // cancel the timeout action
     cancelWaitDeadline();
 
-    ROS_INFO("response bytes1: %i", bytes);
+    ROS_INFO("response bytes1: %ld", bytes);
 
     if (error) {
       ROS_ERROR_STREAM("handleWaitResponse: " << error.message());
@@ -177,7 +177,7 @@ private:
     // cancel the timeout action
     cancelWaitDeadline();
 
-    ROS_INFO("response bytes1: %i", bytes);
+    ROS_INFO("response bytes1: %ld", bytes);
 
     if (error) {
       ROS_ERROR_STREAM("handleWaitData: " << error.message());
