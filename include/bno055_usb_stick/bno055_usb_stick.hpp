@@ -106,6 +106,7 @@ private:
     boost::asio::async_write(serial_,
                              boost::asio::buffer(command, Constants::getCommandLength(command)),
                              boost::bind(&BNO055USBStick::handleSendCommand, this, _1, _2));
+    ROS_INFO("wrote command %02x", command);
 
     // schedule restarting in case of timeout
     startWaitDeadline(&BNO055USBStick::restart);
