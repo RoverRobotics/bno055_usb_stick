@@ -1,0 +1,13 @@
+<launch>
+   <node pkg="bno055_usb_stick" type="bno055_usb_stick_node" name="bno055_usb_stick_node" output="screen" >
+      <param name="port" value="/dev/imu" />
+      <param name="timeout" value="1.0" />
+      <param name="mode" value="imu" />
+      <param name="frame_id" value="imu_link" />
+      <param name="pose_frame_id" value="fixed" />
+      <param name="publish_tf" value="false" />
+      <param name="frequency" value="30" />
+      <param name="accel_covariance" value="3.34e-5" />
+      <param name="gyro_covariance" value="4.9e-5" />
+   </node>
+</launch>
